@@ -1,8 +1,8 @@
 pipeline {
   agent any
-      triggers {
-        // Déclencheur pour écouter les webhooks de GitHub
-        githubWebhook()
+    triggers {
+        // Déclencher le build lorsqu'un push est effectué sur le dépôt GitHub
+        githubPush()
     }
   
   stages {
