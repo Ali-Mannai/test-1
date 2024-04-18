@@ -1,16 +1,53 @@
 pipeline {
-  agent any
-    triggers {
-        // Déclencher le build lorsqu'un push est effectué sur le dépôt GitHub
-        githubPush()
+    agent any
+    
+    stages {
+        stage('Build Backend') {
+            steps {
+                echo 'Building backend Docker image...'
+            }
+        }
+        
+        stage('Build Frontend') {
+            steps {
+                echo 'Building frontend Docker image...'
+            }
+        }
+        
+        stage('Test Backend') {
+            steps {
+                echo 'Testing backend...'
+            }
+        }
+        
+        stage('Test Frontend') {
+            steps {
+                echo 'Testing frontend...'
+            }
+        }
+        
+        stage('Push Images to Docker Registry') {
+            steps {
+                echo 'Pushing images to Docker Registry...'
+            }
+        }
+        
+        stage('Deploy to Minikube') {
+            steps {
+                echo 'Deploying to Minikube...'
+            }
+        }
+        
+        stage('Test on Minikube') {
+            steps {
+                echo 'Testing on Minikube...'
+            }
+        }
     }
-  
-  stages {
-    stage('build') {
-      steps {
-        echo 'build completed with success.'
-      }
+    
+    post {
+        always {
+            echo 'Cleaning up Minikube...'
+        }
     }
-
-  }
 }
